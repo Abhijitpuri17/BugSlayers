@@ -8,8 +8,13 @@ router.get('/',(req,res,next)=>{
 });
 
 router.post('/',(req,res,next)=>{
+    const skill = {
+        name: req.body.name,
+        experience:req.body.experience
+    }
     res.status(201).json({
-        message:'adding new skill'
+        message:'adding new skill',
+        skill:skill
     })
 });
 
