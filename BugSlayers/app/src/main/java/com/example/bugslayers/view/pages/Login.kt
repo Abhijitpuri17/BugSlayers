@@ -1,13 +1,16 @@
 package com.example.bugslayers.view.pages
 
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -27,15 +30,7 @@ import com.example.bugslayers.view.components.CustomPasswordTextField
 import com.example.bugslayers.view.components.CustomTextField
 
 @Composable
-fun SignUpPage() {
-
-    var name = remember {
-        mutableStateOf("")
-    }
-
-    var email = remember {
-        mutableStateOf("")
-    }
+fun LoginPage() {
 
     var userName = remember {
         mutableStateOf("")
@@ -45,79 +40,49 @@ fun SignUpPage() {
         mutableStateOf("")
     }
 
-    var confirmPassword = remember {
-        mutableStateOf("")
-    }
-
     val scrollState = rememberScrollState()
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
-        modifier = Modifier.verticalScroll(scrollState)
+        modifier = Modifier.verticalScroll(scrollState).padding(top = 16.dp)
     ) {
         Image(painter = painterResource(id = R.drawable.logo),
             modifier = Modifier.size(150.dp),
             contentDescription = "App Logo")
 
-        Text(text = "Welcome!", fontSize=36.sp,
+        Text(text = "Welcome Back!", fontSize=28.sp,
             color = Color(0xff41454f),
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier.offset(y= (-16).dp)
         )
 
-        Text(text = "Create your account",
+        Text(text = "Log In to your account",
             color = Color(0xffbec2c4),
             modifier = Modifier.offset(y= (-16).dp)
         )
 
         Column(
-            modifier = Modifier.padding(24.dp)
+            modifier = Modifier.padding(top = 36.dp, bottom = 24.dp)
         ) {
-            CustomTextField(field = name,
-                labelText = "Name",
-                placeHolderText = "name",
-                textType = KeyboardType.Text)
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            CustomTextField(field = email,
-                labelText = "Email",
-                placeHolderText = "email",
-                textType = KeyboardType.Email)
-
-            Spacer(modifier = Modifier.height(6.dp))
-
             CustomTextField(field = userName,
-                labelText = "Email",
-                placeHolderText = "email",
+                labelText = "Username",
+                placeHolderText = "username",
                 textType = KeyboardType.Text)
 
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             CustomPasswordTextField(field = password,
                 labelText = "Password",
                 placeHolderText = "password",)
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            CustomPasswordTextField(field = confirmPassword,
-                labelText = "Confirm Password",
-                placeHolderText = "password")
         }
 
-        CustomButton(text = "Sign Up", onClick = {})
-        
-        Row(modifier = Modifier.padding(top = 16.dp)) {
-            Text(text = "Already have an account? ", fontWeight = FontWeight.Light, color = Color(0xffc5c8cd))
-            Text(text = "Sign Up",
-                fontWeight = FontWeight.SemiBold ,
-                color = Color(0xaa0073b1),
-                modifier = Modifier.clickable {
+        CustomButton(text = "Log In", onClick = {})
 
-                }
-            )
+        Row(modifier = Modifier.padding(top = 24.dp)) {
+            Text(text = "Don't have an account? ", fontWeight = FontWeight.Light, color = Color(0xffc5c8cd))
+            Text(text = "Sign Up", fontWeight = FontWeight.SemiBold ,color = Color(0xaa0073b1))
         }
-        
+
     }
 }
