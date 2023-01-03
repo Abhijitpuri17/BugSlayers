@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.bugslayers.R
 
 @Composable
 fun CustomButton(text: String, onClick: () -> Unit){
@@ -22,7 +23,7 @@ fun CustomButton(text: String, onClick: () -> Unit){
             ),
         shape = RoundedCornerShape(10.dp),
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = Color(0xff0073b1)
+            backgroundColor = Color(0xff0073b1),
         )
     ) {
         Text(text = text,

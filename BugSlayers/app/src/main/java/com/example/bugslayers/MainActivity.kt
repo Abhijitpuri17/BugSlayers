@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.bugslayers.ui.theme.BugSlayersTheme
+import com.example.bugslayers.view.App
 import com.example.bugslayers.view.pages.LoginPage
 import com.example.bugslayers.view.pages.SignUpPage
 
@@ -27,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
-                    SignUpPage()
+                    App()
                 }
             }
         }
@@ -39,6 +40,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     BugSlayersTheme {
-       LoginPage()
+       App()
     }
 }

@@ -21,13 +21,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import com.example.bugslayers.R
 import com.example.bugslayers.view.components.CustomButton
 import com.example.bugslayers.view.components.CustomPasswordTextField
 import com.example.bugslayers.view.components.CustomTextField
 
 @Composable
-fun SignUpPage() {
+fun SignUpPage(navController: NavHostController) {
 
     var name = remember {
         mutableStateOf("")
@@ -110,14 +113,18 @@ fun SignUpPage() {
         
         Row(modifier = Modifier.padding(top = 16.dp)) {
             Text(text = "Already have an account? ", fontWeight = FontWeight.Light, color = Color(0xffc5c8cd))
-            Text(text = "Sign Up",
+            Text(text = "Log In",
                 fontWeight = FontWeight.SemiBold ,
                 color = Color(0xaa0073b1),
                 modifier = Modifier.clickable {
-
+                    gotoLogInPage(navController)
                 }
             )
         }
         
     }
+}
+
+fun gotoLogInPage(navController: NavHostController){
+    navController.popBackStack()
 }
