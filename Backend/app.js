@@ -1,7 +1,15 @@
 const express = require('express');
 const skillRoutes = require('./api/routes/skills'); 
+const userRoutes = require('./api/routes/users'); 
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const connectDB = require('./db');
+require("dotenv").config();
+
+connectDB();
+mongoose.Promise = global.Promise;
+
 const app = express();
 
 app.use(morgan('dev'));
@@ -20,6 +28,7 @@ app.use((req,res,next)=>{
 })
 
 app.use('/skills',skillRoutes);
+app.use('/users',userRoutes);
 
 app.use((req,res,next)=>{
     const error = new Error('Not Found');
