@@ -23,6 +23,9 @@ const userSchema = mongoose.Schema({
     },
     imageURL:{
         type:String
+    },
+    verified:{
+        type:Boolean
     }
 });
 
