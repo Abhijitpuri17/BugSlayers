@@ -65,7 +65,7 @@ exports.create_user = (req, res, next) => {
 
 //send verification email:
 const SendVerificationEmail = async ({ _id, email }, res) => {
-    const currentURL = "http://localhost:3000/";
+    const currentURL = "https://bugslayers.onrender.com";
     const uniqueString = uuidv4() + _id;
     const mailOptions = {
         from: process.env.AUTH_EMAIL,
@@ -218,3 +218,22 @@ exports.user_login = async (req, res, next) => {
         })
     }
 };
+
+exports.edit_user = async(req,res,next)=>{
+    try{
+        const username = req.params.userName;
+        const updateUsr={};
+        for(const usrs of req.body){
+            updateUsr[usrs.propName]=usrs.value;
+        }
+        const result = await User.updateOne(
+            {userName:username},{$set:updateUsr}).exec();
+        res.status(200).json(result);
+    }catch(err){
+        console.log(err);
+        res.status(500).json({
+            message:"user profile not updated"
+        })
+    }
+    
+}
