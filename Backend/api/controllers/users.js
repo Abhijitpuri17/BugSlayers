@@ -177,7 +177,7 @@ exports.user_login = async (req, res, next) => {
         const user = await User.find({ userName: req.body.userName }).exec()
         if (user.length < 1) {
             return res.status(401).json({
-                message: "Auth failed"
+                message: "No such user exist"
             })
         }
         if(!user[0].verified){
@@ -222,12 +222,16 @@ exports.user_login = async (req, res, next) => {
 exports.edit_user = async(req,res,next)=>{
     try{
         const username = req.params.userName;
-        const updateUsr={};
-        for(const usrs of req.body){
-            updateUsr[usrs.propName]=usrs.value;
-        }
+        // const updateUsr={};
+        // for(const usrs of req.body){
+        //     updateUsr[usrs.propName]=usrs.value;
+        // }
         const result = await User.updateOne(
-            {userName:username},{$set:updateUsr}).exec();
+            {userName:username},
+            {$set:{
+                imageURL:req.body.imageURL
+            }}
+            ).exec();
         res.status(200).json(result);
     }catch(err){
         console.log(err);
